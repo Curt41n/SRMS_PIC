@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wolfcode.dao.VideoDao">
+<!--    <insert id="videoAdd" parameterMap="cn.wolfcode.entity.T_video">-->
+<!--        insert into t_video values(#{vid},#{vname},#{vtype} ,#{vcate},#vpic)-->
+<!--    </insert>-->
+
+<!--    <select id="selectVideoByCondition" parameterType="java.util.Map" resultType="cn.wolfcode.entity.T_video">-->
+<!--        select * from t_video-->
+<!--            <where>-->
+<!--                <if test="vid!= null">-->
+<!--                    vid LIKE "%${vid}%"-->
+<!--                </if>-->
+<!--                <if test="vname!= null">-->
+<!--                    or vname LIKE "%${vname}%"-->
+<!--                </if>-->
+<!--                <if test="vcate!= null">-->
+<!--                    or vcate LIKE "%${vcate}%"-->
+<!--                </if>-->
+<!--                <if test="vstate!= null">-->
+<!--                    or vstate LIKE "${vstate}"-->
+<!--                </if>-->
+<!--&#45;&#45;          </where>-->
+<!--    </select>-->
+
+<!--    <update id="videoUpdate" parameterType="java.util.Map" >-->
+<!--        update t_video-->
+<!--        <trim prefix="set" suffixOverrides=",">-->
+<!--            <if test="vid !=null and vid!=''">-->
+<!--                vid=#{vid},-->
+<!--            </if>-->
+<!--            <if test="vname !=null and vname!=''">-->
+<!--                vname=#{vname},-->
+<!--            </if>-->
+<!--            <if test="vsize !=null and vsize!=''">-->
+<!--                vsize=#{vsize},-->
+<!--            </if>-->
+<!--            <if test="vtype !=null and vtype!=''">-->
+<!--                vtype=#{vtype},-->
+<!--            </if>-->
+<!--            <if test="vstate !=null and vstate!=''">-->
+<!--                vstate=#{vstate},-->
+<!--            </if>-->
+<!--             <if test="uploadtime !=null and uploadtime!=''">-->
+<!--                uploadtime=#{uploadtime},-->
+<!--            </if>-->
+<!--            <if test="pv !=null ">-->
+<!--                pv=#{pv},-->
+<!--            </if>-->
+<!--            <if test="vid != null">-->
+<!--                where vid =#{vid}-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--    </update>-->
+    <select id="selectAllVideo" resultType="cn.wolfcode.entity.T_video">
+        select * from t_video
+    </select>
+
+    <update id="videoUpdate" parameterType="java.util.Map">
+        UPDATE t_video set  vname=#{vname}, vsize=#{vsize},vcate=#{pic_phone} , vstate=#{vstate},uploadtime=#{uploadtime},pv=#{pv} where vid=#{vid}
+    </update>
+
+    <update id="videoAdd" parameterType="java.util.Map">
+        insert into t_video (vid,vname,vcate) values ("${vid}","${vname}","${vcate}"")
+    </update>
+
+    <delete id="videoDelete">
+        delete from t_video where vid = #{vid}
+    </delete>
+
+    <select id="selectVideoById" resultType="cn.wolfcode.entity.T_video">
+        select * from t_video where vid=#{Id}
+    </select>
+</mapper>

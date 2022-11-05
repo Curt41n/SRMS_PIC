@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="cn.wolfcode.dao.PictureDao">
+
+    <select id="selectPictureByCode"  resultType="cn.wolfcode.entity.T_Picture">
+        select * from t_picture where pic_code = #{str}
+    </select>
+
+    <select id="selectPictureAll"  resultType="cn.wolfcode.entity.T_Picture">
+        select * from t_picture
+    </select>
+
+    <update id="updatePicture" parameterType="java.util.Map" >
+        update t_picture set pic_code=#{pic_code}, pic_name=#{pic_name} ,pic_content=#{pic_content} where pic_url=#{pic_url}
+    </update>
+
+    <update id="addPicture" parameterType="java.util.Map" >
+        insert into t_picture (pic_code,pic_name,pic_user,pic_phone,pic_address,pic_chuanzhen,pic_content,pic_time,pic_type,pic_check,pic_url) values ("${pic_code}","${pic_name}","${pic_user}","${pic_phone}","${pic_address}","${pic_chuanzhen}","${pic_content}","${pic_time}","${pic_type}","${pic_check}","${pic_url}")
+    </update>
+
+    <delete id="deletePicture">
+        delete from t_picture where pic_code = #{pic_code}
+    </delete>
+
+
+</mapper>

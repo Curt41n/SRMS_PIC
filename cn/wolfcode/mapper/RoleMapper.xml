@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wolfcode.dao.RoleDao">
+
+    <insert id="save" parameterType="cn.wolfcode.entity.T_Role">
+        insert into t_role (rname,rdesc,rid)values(#{rname},#{rdesc},#{rid})
+    </insert>
+    <update id="updateRole" parameterType="cn.wolfcode.entity.T_Role">
+        update t_role set rdesc=#{rdesc},rid=#{rid} where  rname=#{rname}
+    </update>
+    <select id="selectAll"  resultType="cn.wolfcode.entity.T_Role">
+        select * from t_role
+    </select>
+    <select id="selectByname" resultType="cn.wolfcode.entity.T_Role">
+        select * from t_role where rname=#{rname}
+    </select>
+    <delete id="deleteRole" >
+        delete from t_role where rname=#{rname}
+    </delete>
+    <select id="selectBysname"  resultType="cn.wolfcode.entity.T_Role">
+        select * from t_role where rname like #{rname}
+
+    </select>
+
+    <select id="selectUserInfo" resultType="cn.wolfcode.entity.T_User" parameterType="java.lang.String">
+        SELECT t_user.* FROM t_user
+                                 JOIN t_role
+                                      ON t_user.rid=t_role.rid
+        WHERE t_user.ucode=#{ucode}
+    </select>
+    <!--    <select id="selectByid" resultType="cn.wolfcode.entity.T_Role">-->
+    <!--        select * from t_role where rid=#{rid}-->
+    <!--    </select>-->
+</mapper>
